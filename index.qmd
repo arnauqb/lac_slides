@@ -1,0 +1,855 @@
+---
+title: <span style="background-color:rgba(255, 255, 255, 0.0)">*Differentiable*</span> <br> <span style="background-color:rgba(255, 255, 255, 0.0)">Agent-Based Models</span>
+author: <span style="background-color:rgba(255, 255, 255, 0.0)"> Arnau Quera-Bofarull </span>
+format: 
+    revealjs:
+        width: 1600
+        #margin: 0.2
+        css: style.css
+        include-in-header: 
+            text: |
+                <style>
+                .center-xy {
+                  margin: 0;
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  -ms-transform: translateY(-50%), translateX(-50%);
+                  transform: translateY(-50%), translateX(-50%);
+                }
+                </style>
+monofont: 'JetBrains Mono'
+#mainfont: "Tahoma 40"
+#fontsize: "80"
+title-slide-attributes:
+  data-background-image: ./lac_images/bg.jpeg
+  data-background-size: contain
+  data-background-opacity: "0.35"
+jupyter: torch2
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+project:
+    type: website
+    preview:
+        port: 7777
+---
+
+```{python}
+#| echo: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+import random
+random.seed(0)
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "Helvetica"
+})
+```
+
+
+## The success of Machine Learning
+
+::: {layout-ncol=3 layout-valign="center"}
+
+::: {.fragment .semi-fade-out fragment-index=1}
+![](./lac_images/data.svg){width=400}
+:::
+
+::: {.fragment .fade-in-then-semi-out fragment-index=1}
+![](./lac_images/supercomputer.jpeg){width=400}
+:::
+
+
+::: {.fragment .fade-in fragment-index=2}
+![](./lac_images/pytorch.svg){width=300}
+![](./lac_images/jax.svg){width=300}
+![](./lac_images/julia.svg){width=300}
+:::
+:::
+
+
+## Automatic Differentiation (AD)
+
+Computational backbone of ML
+
+:::: {.columns}
+
+::: {.column width="60%"}
+![](./lac_images/backprop.gif){width=800 height=400 fig-align=center}
+:::
+
+::: {.column width="40%"}
+![](./lac_images/scaling.png){width=600 height=400 fig-align=center}
+:::
+
+::::
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+::: {.fragment .fade-in fragment-index=1}
+
+> Can we make it work for ABMs?
+:::
+
+:::
+
+::: {.column width="50%"}
+::: {.fragment .fade-in fragment-index=2}
+
+<big>Yes, we can$^*$</big>
+
+\* Terms and conditions apply.
+
+:::
+:::
+
+::::
+
+
+## AD in a nutshell
+
+$$ f(x) = x^2 + 4y + \cos(x)^2 $$
+
+:::: {.columns}
+
+::: {.column width="55%"}
+::: {.r-stack}
+::: {.fragment .fade-in-then-out fragment-index=1}
+```{python}
+#| echo: true
+import torch
+
+def f(x, y):
+    return x**2 + 4 * y + torch.cos(x)**2
+
+x = torch.tensor(2.0, requires_grad=True)
+y = torch.tensor(1.5, requires_grad=True)
+z = f(x, y)
+z.backward()
+```
+:::
+
+::: {.fragment .fade-in fragment-index=2}
+```{.python code-line-numbers="9"}
+import torch
+
+def f(x, y):
+    return x**2 + 4 * y + torch.cos(x)**2
+
+x = torch.tensor(2.0, requires_grad=True)
+y = torch.tensor(1.5, requires_grad=True)
+z = f(x, y)
+z.backward()
+```
+:::
+:::
+:::
+
+
+::: {.column width="45%"}
+::: {.fragment .fade-in fragment-index=2}
+
+```{python}
+#| echo: false
+import torchviz
+x = torch.tensor(2.0, requires_grad=True)
+y = torch.tensor(1.5, requires_grad=True)
+z = f(x, y)
+dot = torchviz.make_dot(z, params={"x" : x, "y" : y}, show_attrs=True)
+dot.render("filename", format="svg");
+```
+![](lac_images/filename.svg){width=500 height=500}
+:::
+:::
+
+::::
+
+
+
+## Challenges of AD for ABMs {auto-animate=true}
+
+1. Discreteness
+
+::: {.fragment .semi-fade-out fragment-index=1}
+2. Stochasticity
+:::
+
+::: {.fragment .semi-fade-out fragment-index=1}
+3. Control flow
+:::
+
+::: {.fragment .semi-fade-out fragment-index=1}
+4. Autoregression
+:::
+
+::: {.fragment .semi-fade-out fragment-index=1}
+5. Large computation graphs
+:::
+
+
+## Challenge 1: Discreteness
+
+
+::: {.r-stack}
+::: {.fragment .fade-out fragment-index=1}
+```{python}
+# | echo: true
+def f(x):
+    hard = x > 0
+```
+:::
+
+::: {.fragment .fade-in fragment-index=1}
+```{python}
+# | echo: true
+def f(x):
+    hard = x > 0
+    soft = torch.sigmoid(x)
+    return hard + (soft - soft.detach())
+```
+:::
+:::
+
+::: {.r-stack}
+::: {.fragment .fade-out fragment-index=1}
+```{python}
+# | echo: false
+fig, ax = plt.subplots(1, 1, figsize=(10, 5))
+x_range = np.linspace(-5, 5, 100)
+ax.plot(x_range, np.heaviside(x_range, 1), label="Forward pass")
+ax.legend()
+```
+:::
+
+::: {.fragment .fade-in fragment-index=1}
+```{python}
+# | echo: false
+fig, ax = plt.subplots(1, 1, figsize=(10, 5))
+x_range = np.linspace(-5, 5, 100)
+ax.plot(x_range, np.heaviside(x_range, 1), label="Forward pass")
+ax.plot(x_range, 1 / (1 + np.exp(-x_range)), label="Backward pass")
+ax.legend()
+```
+:::
+:::
+
+## Challenges of AD for ABMs
+
+::: {.fragment .semi-fade-out fragment-index=1}
+1. Discreteness
+:::
+
+2. Stochasticity
+
+::: {.fragment .semi-fade-out fragment-index=1}
+3. Control flow
+:::
+
+::: {.fragment .semi-fade-out fragment-index=1}
+4. Autoregression
+:::
+
+::: {.fragment .semi-fade-out fragment-index=1}
+5. Large computation graphs
+:::
+
+## Challenge 2: Stochasticity
+
+$$r \sim \mathcal N(0, \theta)$$ 
+
+
+```{python}
+def plot_ts(color, seed, ax=None, plot_deriv=False):
+    torch.manual_seed(seed)
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(10, 5))
+    def f(theta):
+        eps = torch.randn(1)
+        r = eps * theta
+        y = 20 * r * torch.cos(theta) + 20 * x
+        deriv = 20 * r * -torch.sin(theta) + 20
+        return y, deriv
+    x = torch.linspace(0, 10, 100)
+    y, deriv = f(x)
+    if plot_deriv:
+        ax.plot(x, deriv, color = color)
+        ax.set_ylabel(r"$\nabla_\theta f(\theta)$")
+        ax.set_ylim(-250, 350)
+    else:
+        ax.plot(x, y, color = color)
+        ax.set_ylabel(r"$f(\theta)$")
+    ax.set_xlabel(r"$\theta$")
+    return ax 
+```
+
+$$f(\theta) = 20 (\theta + r \cos(\theta))$$
+
+
+::: {.r-stack}
+::: {.fragment .fade-in fragment-index=2}
+```{python}
+plot_ts("C0", 0);
+```
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=3}
+```{python}
+ax = plot_ts("C0", 0);
+plot_ts("C1", 3, ax=ax);
+```
+:::
+::: {.fragment .fade-in fragment-index=4}
+```{python}
+ax = plot_ts("C0", 0);
+plot_ts("C1", 3, ax=ax);
+plot_ts("C2", 10, ax=ax);
+```
+:::
+:::
+
+
+
+## {auto-animate=true}
+### Renormalization trick
+
+$$r \sim \mathcal N(0, \theta)$$ 
+
+::: {.fragment .fade-in fragment-index=1}
+
+is equivalent to
+$$\epsilon \sim \mathcal N(0, 1) \hspace{1cm} r = 0 + \theta \epsilon$$
+
+:::
+
+::: {.fragment .fade-in fragment-index=2}
+
+then
+
+$$f(\theta) = 20 (\theta + (0 + \theta\epsilon) \cos(\theta))$$
+
+$$\nabla_\theta f(\theta) = 20 (1 + \epsilon \cos(\theta) - \theta\epsilon\sin(\theta))$$
+
+:::
+
+## {auto-animate=true}
+
+$$\nabla_\theta f(\theta) = 20 (1 + \epsilon \cos(\theta) - \theta\epsilon\sin(\theta))$$
+
+::: {.r-stack}
+::: {.fragment .fade-out fragment-index=1}
+```{python}
+plot_ts("C0", 0, plot_deriv=True);
+```
+:::
+
+::: {.fragment .fade-in fragment-index=1}
+```{python}
+ax = plot_ts("C0", 0, plot_deriv=True);
+plot_ts("C1", 3, ax=ax, plot_deriv=True);
+```
+:::
+::: {.fragment .fade-in fragment-index=2}
+```{python}
+ax = plot_ts("C0", 0, plot_deriv=True);
+plot_ts("C1", 3, ax=ax, plot_deriv=True);
+plot_ts("C2", 10, ax=ax, plot_deriv=True);
+```
+:::
+
+::: {.fragment .fade-in fragment-index=3}
+```{python}
+ax = plot_ts("gray", 0, plot_deriv=True);
+for i in range(10):
+    plot_ts("gray", i, ax=ax, plot_deriv=True);
+ax.axhline(20, color="black", linestyle="--")
+```
+:::
+
+::::
+
+
+## Discrete distributions
+
+$$r \sim \mathrm{Bernoulli}(\theta)$$ 
+
+&nbsp;
+
+::: {.fragment .fade-in fragment-index=1}
+### 1. Straight-through estimator
+
+```{python}
+# | echo: true
+def f(theta):
+    r = torch.bernoulli(theta)
+    return r + (theta - theta.detach())
+```
+:::
+
+&nbsp;
+
+::: {.fragment .fade-in fragment-index=2}
+$$\nabla_\theta \mathbb E [ r ] = 1$$
+::: 
+
+## Discrete distributions
+
+### 2. Continuous relaxation (Gumbel-Softmax)
+
+::: {.fragment .semi-fade-out fragment-index=1}
+$$I\sim \mathrm{Categorical}(\theta)$$
+:::
+
+
+::: {.r-stack}
+::: {.fragment .fade-out fragment-index=3}
+::: {.fragment .fade-in-then-semi-out fragment-index=1}
+$$\downarrow$$
+$$I \sim \underset{k}{\mathrm{argmax}} \; \{ \theta_k + G^{(k)}\}$$
+:::
+:::
+::: {.fragment .fade-in fragment-index=3}
+<span style="color:dodgerblue">Forward pass</span>
+$$\color{dodgerblue}\boxed{I \sim \underset{k}{\mathrm{argmax}} \; \{ \theta_k + G^{(k)}\}}$$
+:::
+:::
+
+::: {.r-stack}
+::: {.fragment .fade-out fragment-index=3}
+::: {.fragment .fade-in fragment-index=2}
+$$\downarrow$$
+$$I\sim \underset{k}{\mathrm{softmax}} \; \{ \theta_k + G^{(k)}\}$$
+:::
+:::
+
+::: {.fragment .fade-in fragment-index=3}
+<span style="color:brown">Backward pass</span>
+$$\color{brown}\boxed{I \sim \underset{k}{\mathrm{softmax}} \; \{ \theta_k + G^{(k)}\}}$$
+:::
+:::
+
+## Discrete distributions
+
+### 3. Stochastic derivatives
+
+Fu et al. 1997, Arya et al. 2022
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](./lac_images/sad_path.png){height=250 fig-align=center}
+
+:::
+
+::: {.column width="50%"}
+::: {.fragment .fade-in fragment-index=1}
+
+![](./lac_images/stochasticad.png){fig-align=center}
+
+:::
+:::
+
+::::
+
+
+## Challenges of AD for ABMs
+
+::: {.fragment .semi-fade-out fragment-index=1}
+1. Discreteness
+:::
+
+::: {.fragment .semi-fade-out fragment-index=1}
+2. Stochasticity
+:::
+
+3. Control flow
+
+::: {.fragment .semi-fade-out fragment-index=1}
+4. Autoregression
+:::
+
+::: {.fragment .semi-fade-out fragment-index=1}
+5. Large computation graphs
+:::
+
+
+## Challenge 3: Control Flow
+
+AD requires a **static** computational graph
+
+::: {.columns}
+
+::: {.column width="30%"}
+<img src="https://beginnersbook.com/wp-content/uploads/2017/09/If_else_flow_diagram_C.jpg" width="500" height="500" />
+
+:::
+
+::: {.column width="70%"}
+
+```{python}
+# | echo: true
+def recover(agent, p):
+    if agent.infected:
+        recover = sample_bernoulli(p)
+    else:
+        recover = False
+    return recover
+```
+
+::: {.fragment .fade-in fragment-index=1}
+
+$$ \downarrow $$
+
+```{python}
+# | echo: true
+def recover(agent, p):
+    recover = sample_bernoulli(p)
+    mask = agent.infected
+    return recover * mask
+```
+
+:::
+:::
+
+::::
+
+## Challenges of AD for ABMs
+
+::: {.fragment .semi-fade-out fragment-index=1}
+1. Discreteness
+:::
+
+::: {.fragment .semi-fade-out fragment-index=1}
+2. Stochasticity
+:::
+
+::: {.fragment .semi-fade-out fragment-index=1}
+3. Control flow
+:::
+
+4. Autoregression
+
+::: {.fragment .semi-fade-out fragment-index=1}
+5. Large computation graphs
+:::
+
+
+## Challenge 4: Autoregression
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+ABMs are autoregressive like RNNs
+
+![](./lac_images/rnn.webp){width=600 height=350 fig-align=center}
+
+Exploding / vanishing gradients
+:::
+
+::: {.column width="60%"}
+
+::: {.r-stack}
+
+::: {.fragment .fade-out fragment-index=2}
+
+&nbsp;
+```{.python}
+def run_abm(...):
+    x = x0
+    for i in range(n_timesteps):
+        x = f(x, params)
+    return x
+```
+:::
+
+::: {.fragment .fade-in fragment-index=2}
+
+&nbsp;
+```{.python code-line-numbers="4-6"}
+def run_abm(...):
+    x = x0
+    for i in range(n_timesteps):
+        x = f(x, params)
+        if (i+1) % gradient_horizon == 0:
+            x = x.detach()
+    return x
+```
+
+:::
+
+:::
+
+::: {.fragment .fade-in fragment-index=2}
+
+Gradient time-horizon
+
+:::
+
+:::
+
+::::
+
+## Challenges of AD for ABMs
+
+::: {.fragment .semi-fade-out fragment-index=1}
+1. Discreteness
+:::
+
+::: {.fragment .semi-fade-out fragment-index=1}
+2. Stochasticity
+:::
+
+::: {.fragment .semi-fade-out fragment-index=1}
+3. Control flow
+:::
+
+::: {.fragment .semi-fade-out fragment-index=1}
+4. Autoregression
+:::
+
+5. Large computation graphs
+
+## Challenge 5: Large computational graphs
+
+::: {layout-ncol=2 layout-valign="center"}
+
+![](./lac_images/comp_graph.png){width=300 height=550 fig-align="center"}
+
+![](./lac_images/memory_allocations.png){width=600 height=400 fig-align="center"}
+
+:::
+
+Using **Forward-Mode AD** solves this problem
+
+
+## Example: Differentiable SIR model
+
+$$\{\beta_{1,\dots,n}, \gamma, I_0\} \rightarrow \boxed{\mathrm{Model}} \rightarrow \{S, I, R\}$$
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](lac_images/graph.jpg){width=600 height=400 fig-align=center}
+
+:::
+
+::: {.column width="50%"}
+
+![](https://cdn.iconscout.com/icon/free/png-256/free-among-us-3187357-2669555.png){width=100 height=100 fig-align=center}
+
+$$\downarrow$$
+
+![](https://cdn.icon-icons.com/icons2/2620/PNG/512/among_us_player_red_icon_156942.png){width=125 height=125 fig-align=center}
+
+:::
+::::
+
+## Example: Differentiable SIR model
+
+### Challenges
+
+::: {.fragment .semi-fade-out fragment-index=1}
+- Discrete stochasticity
+
+    $$I \sim \mathrm{Bernoulli}(p_\mathrm{infection})$$
+:::
+
+::: {.fragment .fade-in-then-semi-out fragment-index=1}
+- Autoregression
+
+    $$S_{t+1}, I_{t+1}, R_{t+1} = f(S_t, I_t, R_t, \beta, \gamma)$$
+:::
+
+::: {.fragment .fade-in-then-semi-out fragment-index=2}
+- Control flow
+
+- Large computation graphs
+:::
+
+
+
+## Gradient-based parameter estimation
+
+Ok, we have a differentiable ABM. Now what?
+
+:::: {.columns}
+
+::: {.column width="50%"}
+::: {.fragment .fade-in fragment-index=1}
+
+### Variational Inference
+
+$$p(\theta | y) = \frac{p(y | \theta) p(\theta)}{p(y)}$$
+
+
+$$q_\phi(\theta) \approx p(\theta | y)$$
+
+minimize ELBO
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+:::: {.fragment .fade-in fragment-index=2}
+
+![](./lac_images/vi.gif)
+
+:::
+:::
+::::
+
+##
+
+However, ABMs have no tractable likelihoods.
+
+::: {.fragment .fade-in fragment-index=1}
+### Generalized Variational Inference
+
+$$p(\theta | y) \propto \exp(-\mathcal \ell(\theta, y)) p(\theta)$$
+
+:::
+
+::: {.fragment .fade-in fragment-index=2}
+
+where now
+
+$$\ell = \mathrm{MSE,} \; \mathrm{MMD,} \dots$$
+
+:::
+
+
+## Generalized Variational Inference {auto-animate=true}
+
+
+::: {.fragment .semi-fade-out fragment-index=1}
+$$q_\phi(\theta)$$
+:::
+
+::: {.fragment .fade-in-then-semi-out fragment-index=1}
+$$q_\phi(\theta) \rightarrow \theta$$
+:::
+
+::: {.fragment .fade-in-then-semi-out fragment-index=2}
+$$q_\phi(\theta) \rightarrow \theta \rightarrow \boxed{\mathrm{ABM}}$$
+:::
+
+::: {.fragment .fade-in-then-semi-out fragment-index=3}
+$$q_\phi(\theta) \rightarrow \theta \rightarrow \boxed{\mathrm{ABM}} \rightarrow x$$
+:::
+
+::: {.fragment .fade-in-then-semi-out fragment-index=4}
+$$q_\phi(\theta) \rightarrow \theta \rightarrow \boxed{\mathrm{ABM}} \rightarrow x \rightarrow \ell (x, y)$$
+:::
+
+## Generalized Variational Inference {auto-animate=true}
+
+$$q_\phi(\theta) \rightarrow \theta \rightarrow \boxed{\mathrm{ABM}} \rightarrow x \rightarrow \ell (x, y)$$
+
+::: {.r-stack}
+
+::: {.fragment .fade-out fragment-index=1}
+$$\ell (x, y)$$
+:::
+::: {.fragment .fade-in-then-out fragment-index=1}
+$$\mathbb E_{q_\phi(\theta)} [\ell (x, y)]$$
+:::
+::: {.fragment .fade-in fragment-index=2}
+$$\nabla_\phi \mathbb E_{q_\phi(\theta)} [\ell (x, y)]$$
+:::
+
+:::
+
+::: {.fragment .fade-in fragment-index=3}
+:::: {.columns}
+
+::: {.column width="50%"}
+### 1. Score-based gradient
+
+Does not require a differentiable simulator
+
+$$\nabla_\phi \log q_\phi(\theta)$$
+
+:::
+
+::: {.column width="50%"}
+### 2. Path-wise gradient
+
+Requires differentiable simulator
+
+$$\nabla_\theta \; \ell (x(\theta(\phi)), y)$$
+
+:::
+
+::::
+:::
+
+
+
+##
+
+![](https://github.com/arnauqb/blackbirds/blob/main/docs/_static/banner.png?raw=true){width=600 fig-align=center}
+
+- [www.github.com/arnauqb/blackbirds](www.github.com/arnauqb/blackbirds)
+
+- Software package to calibrate differentiable models. 
+
+## Using Blackbirds
+
+```{.python}
+import torch.distributions as dist
+from blackbirds.infer import VI
+
+def loss(theta, y):
+    x = model(theta)
+    return loss_fn(x, y)
+
+prior = dist.Normal(0, 1)
+posterior_estimator = make_flow()
+
+vi = VI(loss, posterior_estimator, prior)
+vi.run(true_data)
+```
+
+## 
+
+
+![](./lac_images/losses.gif){height=400 .absolute top=-100 left=0}
+
+![](./lac_images/predictions.gif){height=400 .absolute top=350 left=0}
+
+
+![](./lac_images/posteriors.gif){width=900 .absolute top=0 right=-100}
+
+
+
+## Conclusions
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Possible to make ABMs (automatically) **differentiable**.
+- Challenges: discreteness, stochasticity, control flow, autoregression, large computational graphs.
+- **Variational inference** enables the calibration of a large number of parameters.
+
+
+::: 
+
+::: {.column width="50%"}
+
+![](./lac_images/posteriors.gif){width=800 .absolute top=0 right=0}
+
+:::
+
+::::
+
+<br><br><br>
+
+<center> Find the slides and references at [arnau.ai/lac](www.arnau.ai/lac)</center>
