@@ -58,7 +58,7 @@ Ayush Chopra
 ![](./lac_images/joel.webp){width=175}
 Joel Dyer
 
-![](./lac_images/nick.png){height=175}
+![](./lac_images/nick.jpg){height=175}
 Nick Bishop
 
 ![](./lac_images/ani.jpeg){width=175}
@@ -91,11 +91,11 @@ Mike Wooldridge
 
 ::: {.fragment .fade-out fragment-index=1}
 Differentiable ABM tutorial @ AAMAS 2024 (NZ)
-![](./lac_images/diff_abms_tutorial.png)
+![](./lac_images/diff_abms_tutorial.jpg)
 :::
 
 ::: {.fragment .fade-in fragment-index=1}
-![](./lac_images/hobiton.png)
+![](./lac_images/hobiton.jpg)
 :::
 :::
 
