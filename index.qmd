@@ -48,6 +48,63 @@ plt.rcParams.update({
 })
 ```
 
+## Team
+
+::: {layout-ncol=6 layout-valign="center"}
+
+![](./lac_images/ayush.jpeg){width=175}
+Ayush Chopra
+
+![](./lac_images/joel.webp){width=175}
+Joel Dyer
+
+![](./lac_images/nick.png){height=175}
+Nick Bishop
+
+![](./lac_images/ani.jpeg){width=175}
+Ani Calinescu
+
+![](./lac_images/doyne.webp){width=175}
+Doyne Farmer
+
+![](./lac_images/mike.jpeg){width=175}
+Mike Wooldridge
+
+::: 
+
+## Conferences
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- AI4ABM @ ICML 2022, ICLR 2023
+- AAMAS 2023
+- Differentiable almost everything @ ICML 2023
+- ICAIF 2023
+- JOSS 2023
+:::
+
+::: {.column width="50%"}
+
+::: {.r-stack}
+
+::: {.fragment .fade-out fragment-index=1}
+Differentiable ABM tutorial @ AAMAS 2024 (NZ)
+![](./lac_images/diff_abms_tutorial.png)
+:::
+
+::: {.fragment .fade-in fragment-index=1}
+![](./lac_images/hobiton.png)
+:::
+:::
+
+:::
+
+
+::::
+
+
 
 ## The success of Machine Learning
 

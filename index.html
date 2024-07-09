@@ -413,6 +413,56 @@
 </div>
 
 </section>
+<section id="team" class="slide level2">
+<h2>Team</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="6">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 16.7%;justify-content: flex-start;">
+<p><img data-src="./lac_images/ayush.jpeg" width="175"> Ayush Chopra</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 16.7%;justify-content: flex-start;">
+<p><img data-src="./lac_images/joel.webp" width="175"> Joel Dyer</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 16.7%;justify-content: flex-start;">
+<p><img data-src="./lac_images/nick.png" height="175"> Nick Bishop</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 16.7%;justify-content: flex-start;">
+<p><img data-src="./lac_images/ani.jpeg" width="175"> Ani Calinescu</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 16.7%;justify-content: flex-start;">
+<p><img data-src="./lac_images/doyne.webp" width="175"> Doyne Farmer</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 16.7%;justify-content: flex-start;">
+<p><img data-src="./lac_images/mike.jpeg" width="175"> Mike Wooldridge</p>
+</div>
+</div>
+</div>
+</section>
+<section id="conferences" class="slide level2">
+<h2>Conferences</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>AI4ABM @ ICML 2022, ICLR 2023</li>
+<li>AAMAS 2023</li>
+<li>Differentiable almost everything @ ICML 2023</li>
+<li>ICAIF 2023</li>
+<li>JOSS 2023</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+<p>Differentiable ABM tutorial @ AAMAS 2024 (NZ) <img data-src="./lac_images/diff_abms_tutorial.png"></p>
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
+<p><img data-src="./lac_images/hobiton.png"></p>
+</div>
+</div>
+</div></div>
+</section>
 <section id="the-success-of-machine-learning" class="slide level2">
 <h2>The success of Machine Learning</h2>
 <div>
@@ -470,7 +520,7 @@
 <div class="column" style="width:55%;">
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
-<div id="45808f6a" class="cell" data-execution_count="2">
+<div id="b68b1b3a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href=""></a></span>
 <span id="cb1-3"><a href=""></a><span class="kw">def</span> f(x, y):</span>
@@ -530,13 +580,13 @@
 <h2>Challenge 1: Discreteness</h2>
 <div class="r-stack">
 <div class="fragment fade-out" data-fragment-index="1">
-<div id="713520ae" class="cell" data-execution_count="4">
+<div id="8765ac62" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a><span class="kw">def</span> f(x):</span>
 <span id="cb3-2"><a href=""></a>    hard <span class="op">=</span> x <span class="op">&gt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment fade-in" data-fragment-index="1">
-<div id="71c3a783" class="cell" data-execution_count="5">
+<div id="585c906f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="kw">def</span> f(x):</span>
 <span id="cb4-2"><a href=""></a>    hard <span class="op">=</span> x <span class="op">&gt;</span> <span class="dv">0</span></span>
 <span id="cb4-3"><a href=""></a>    soft <span class="op">=</span> torch.sigmoid(x)</span>
@@ -546,7 +596,7 @@
 </div>
 <div class="r-stack">
 <div class="fragment fade-out" data-fragment-index="1">
-<div id="73aa9164" class="cell" data-execution_count="6">
+<div id="49f27472" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -557,7 +607,7 @@
 </div>
 </div>
 <div class="fragment fade-in" data-fragment-index="1">
-<div id="82727867" class="cell" data-execution_count="7">
+<div id="f654b362" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -601,7 +651,7 @@
 <p><span class="math display">\[f(\theta) = 20 (\theta + r \cos(\theta))\]</span></p>
 <div class="r-stack">
 <div class="fragment fade-in" data-fragment-index="2">
-<div id="192f72af" class="cell" data-execution_count="9">
+<div id="f27b1e43" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -612,7 +662,7 @@
 </div>
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="3">
-<div id="35c3b723" class="cell" data-execution_count="10">
+<div id="a1510431" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -623,7 +673,7 @@
 </div>
 </div>
 <div class="fragment fade-in" data-fragment-index="4">
-<div id="14a397eb" class="cell" data-execution_count="11">
+<div id="ead7e783" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -653,7 +703,7 @@
 <p><span class="math display">\[\nabla_\theta f(\theta) = 20 (1 + \epsilon \cos(\theta) - \theta\epsilon\sin(\theta))\]</span></p>
 <div class="r-stack">
 <div class="fragment fade-out" data-fragment-index="1">
-<div id="3350ae52" class="cell" data-execution_count="12">
+<div id="aada5498" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -664,7 +714,7 @@
 </div>
 </div>
 <div class="fragment fade-in" data-fragment-index="1">
-<div id="7b940e4f" class="cell" data-execution_count="13">
+<div id="822e75d5" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -675,7 +725,7 @@
 </div>
 </div>
 <div class="fragment fade-in" data-fragment-index="2">
-<div id="a1b8694a" class="cell" data-execution_count="14">
+<div id="c8c35eb0" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -686,7 +736,7 @@
 </div>
 </div>
 <div class="fragment fade-in" data-fragment-index="3">
-<div id="6eae888b" class="cell" data-execution_count="15">
+<div id="fcc542e6" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -705,7 +755,7 @@
 <div class="fragment fade-in" data-fragment-index="1">
 <!-- -->
 <h3 id="straight-through-estimator">1. Straight-through estimator</h3>
-<div id="6c16f99b" class="cell" data-execution_count="16">
+<div id="f99b69c7" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="kw">def</span> f(theta):</span>
 <span id="cb5-2"><a href=""></a>    r <span class="op">=</span> torch.bernoulli(theta)</span>
 <span id="cb5-3"><a href=""></a>    <span class="cf">return</span> r <span class="op">+</span> (theta <span class="op">-</span> theta.detach())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -797,7 +847,7 @@
 <div class="column" style="width:30%;">
 <p><img src="https://beginnersbook.com/wp-content/uploads/2017/09/If_else_flow_diagram_C.jpg" width="500" height="500"></p>
 </div><div class="column" style="width:70%;">
-<div id="688e2a91" class="cell" data-execution_count="17">
+<div id="ad044025" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a><span class="kw">def</span> recover(agent, p):</span>
 <span id="cb6-2"><a href=""></a>    <span class="cf">if</span> agent.infected:</span>
 <span id="cb6-3"><a href=""></a>        recover <span class="op">=</span> sample_bernoulli(p)</span>
@@ -807,7 +857,7 @@
 </div>
 <div class="fragment fade-in" data-fragment-index="1">
 <p><span class="math display">\[ \downarrow \]</span></p>
-<div id="62585b0d" class="cell" data-execution_count="18">
+<div id="11ea6184" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a><span class="kw">def</span> recover(agent, p):</span>
 <span id="cb7-2"><a href=""></a>    recover <span class="op">=</span> sample_bernoulli(p)</span>
 <span id="cb7-3"><a href=""></a>    mask <span class="op">=</span> agent.infected</span>
