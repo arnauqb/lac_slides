@@ -8,152 +8,152 @@
  viewBox="0.00 0.00 482.00 439.25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 435.25)">
 <polygon fill="white" stroke="none" points="-4,4 -4,-435.25 478,-435.25 478,4 -4,4"/>
-<!-- 12954328320 -->
+<!-- 12959067376 -->
 <g id="node1" class="node">
-<title>12954328320</title>
+<title>12959067376</title>
 <polygon fill="#caff70" stroke="black" points="178,-32.75 124,-32.75 124,0 178,0 178,-32.75"/>
 <text text-anchor="middle" x="151" y="-7.25" font-family="monospace" font-size="10.00"> ()</text>
 </g>
-<!-- 12954286352 -->
+<!-- 12958225008 -->
 <g id="node2" class="node">
-<title>12954286352</title>
+<title>12958225008</title>
 <polygon fill="lightgrey" stroke="black" points="195,-115 107,-115 107,-68.75 195,-68.75 195,-115"/>
 <text text-anchor="middle" x="151" y="-101.5" font-family="monospace" font-size="10.00">AddBackward0</text>
 <text text-anchor="middle" x="151" y="-88.75" font-family="monospace" font-size="10.00">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</text>
 <text text-anchor="middle" x="151" y="-76" font-family="monospace" font-size="10.00">alpha: 1</text>
 </g>
-<!-- 12954286352&#45;&gt;12954328320 -->
+<!-- 12958225008&#45;&gt;12959067376 -->
 <g id="edge11" class="edge">
-<title>12954286352&#45;&gt;12954328320</title>
+<title>12958225008&#45;&gt;12959067376</title>
 <path fill="none" stroke="black" d="M151,-68.42C151,-60.8 151,-52.2 151,-44.26"/>
 <polygon fill="black" stroke="black" points="154.5,-44.45 151,-34.45 147.5,-44.45 154.5,-44.45"/>
 </g>
-<!-- 12954286016 -->
+<!-- 12958234992 -->
 <g id="node3" class="node">
-<title>12954286016</title>
+<title>12958234992</title>
 <polygon fill="lightgrey" stroke="black" points="278,-203.62 190,-203.62 190,-157.38 278,-157.38 278,-203.62"/>
 <text text-anchor="middle" x="234" y="-190.12" font-family="monospace" font-size="10.00">AddBackward0</text>
 <text text-anchor="middle" x="234" y="-177.38" font-family="monospace" font-size="10.00">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</text>
 <text text-anchor="middle" x="234" y="-164.62" font-family="monospace" font-size="10.00">alpha: 1</text>
 </g>
-<!-- 12954286016&#45;&gt;12954286352 -->
+<!-- 12958234992&#45;&gt;12958225008 -->
 <g id="edge1" class="edge">
-<title>12954286016&#45;&gt;12954286352</title>
+<title>12958234992&#45;&gt;12958225008</title>
 <path fill="none" stroke="black" d="M212.63,-157.19C202.83,-146.97 191.05,-134.68 180.43,-123.59"/>
 <polygon fill="black" stroke="black" points="183.08,-121.3 173.64,-116.5 178.03,-126.14 183.08,-121.3"/>
 </g>
-<!-- 12954286544 -->
+<!-- 12958224144 -->
 <g id="node4" class="node">
-<title>12954286544</title>
+<title>12958224144</title>
 <polygon fill="lightgrey" stroke="black" points="314,-305 154,-305 154,-246 314,-246 314,-305"/>
 <text text-anchor="middle" x="234" y="-291.5" font-family="monospace" font-size="10.00">PowBackward0</text>
 <text text-anchor="middle" x="234" y="-278.75" font-family="monospace" font-size="10.00">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</text>
 <text text-anchor="middle" x="234" y="-266" font-family="monospace" font-size="10.00">exponent: &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;2</text>
 <text text-anchor="middle" x="234" y="-253.25" font-family="monospace" font-size="10.00">self &#160;&#160;&#160;: [saved tensor]</text>
 </g>
-<!-- 12954286544&#45;&gt;12954286016 -->
+<!-- 12958224144&#45;&gt;12958234992 -->
 <g id="edge2" class="edge">
-<title>12954286544&#45;&gt;12954286016</title>
+<title>12958224144&#45;&gt;12958234992</title>
 <path fill="none" stroke="black" d="M234,-245.58C234,-235.93 234,-225.08 234,-215.1"/>
 <polygon fill="black" stroke="black" points="237.5,-215.41 234,-205.41 230.5,-215.41 237.5,-215.41"/>
 </g>
-<!-- 12954285872 -->
+<!-- 12958229952 -->
 <g id="node5" class="node">
-<title>12954285872</title>
+<title>12958229952</title>
 <polygon fill="lightgrey" stroke="black" points="201,-361.75 101,-361.75 101,-341 201,-341 201,-361.75"/>
 <text text-anchor="middle" x="151" y="-348.25" font-family="monospace" font-size="10.00">AccumulateGrad</text>
 </g>
-<!-- 12954285872&#45;&gt;12954286544 -->
+<!-- 12958229952&#45;&gt;12958224144 -->
 <g id="edge3" class="edge">
-<title>12954285872&#45;&gt;12954286544</title>
+<title>12958229952&#45;&gt;12958224144</title>
 <path fill="none" stroke="black" d="M161.85,-340.72C169.98,-333.48 181.66,-323.08 193.27,-312.76"/>
 <polygon fill="black" stroke="black" points="195.37,-315.57 200.52,-306.3 190.72,-310.34 195.37,-315.57"/>
 </g>
-<!-- 12954285728 -->
+<!-- 12958232208 -->
 <g id="node11" class="node">
-<title>12954285728</title>
+<title>12958232208</title>
 <polygon fill="lightgrey" stroke="black" points="136,-298.62 0,-298.62 0,-252.38 136,-252.38 136,-298.62"/>
 <text text-anchor="middle" x="68" y="-285.12" font-family="monospace" font-size="10.00">CosBackward0</text>
 <text text-anchor="middle" x="68" y="-272.38" font-family="monospace" font-size="10.00">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</text>
 <text text-anchor="middle" x="68" y="-259.62" font-family="monospace" font-size="10.00">self: [saved tensor]</text>
 </g>
-<!-- 12954285872&#45;&gt;12954285728 -->
+<!-- 12958229952&#45;&gt;12958232208 -->
 <g id="edge10" class="edge">
-<title>12954285872&#45;&gt;12954285728</title>
+<title>12958229952&#45;&gt;12958232208</title>
 <path fill="none" stroke="black" d="M140.15,-340.72C130.32,-331.97 115.32,-318.62 101.54,-306.35"/>
 <polygon fill="black" stroke="black" points="104.09,-303.94 94.3,-299.91 99.44,-309.17 104.09,-303.94"/>
 </g>
-<!-- 5039212720 -->
+<!-- 12959068256 -->
 <g id="node6" class="node">
-<title>5039212720</title>
+<title>12959068256</title>
 <polygon fill="lightblue" stroke="black" points="178,-431.25 124,-431.25 124,-397.75 178,-397.75 178,-431.25"/>
 <text text-anchor="middle" x="151" y="-417.75" font-family="monospace" font-size="10.00">x</text>
 <text text-anchor="middle" x="151" y="-405" font-family="monospace" font-size="10.00"> ()</text>
 </g>
-<!-- 5039212720&#45;&gt;12954285872 -->
+<!-- 12959068256&#45;&gt;12958229952 -->
 <g id="edge4" class="edge">
-<title>5039212720&#45;&gt;12954285872</title>
+<title>12959068256&#45;&gt;12958229952</title>
 <path fill="none" stroke="black" d="M151,-397.44C151,-390.1 151,-381.32 151,-373.46"/>
 <polygon fill="black" stroke="black" points="154.5,-373.73 151,-363.73 147.5,-373.73 154.5,-373.73"/>
 </g>
-<!-- 12954286160 -->
+<!-- 12958228176 -->
 <g id="node7" class="node">
-<title>12954286160</title>
+<title>12958228176</title>
 <polygon fill="lightgrey" stroke="black" points="474,-305 332,-305 332,-246 474,-246 474,-305"/>
 <text text-anchor="middle" x="403" y="-291.5" font-family="monospace" font-size="10.00">MulBackward0</text>
 <text text-anchor="middle" x="403" y="-278.75" font-family="monospace" font-size="10.00">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</text>
 <text text-anchor="middle" x="403" y="-266" font-family="monospace" font-size="10.00">other: [saved tensor]</text>
 <text text-anchor="middle" x="403" y="-253.25" font-family="monospace" font-size="10.00">self : &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;None</text>
 </g>
-<!-- 12954286160&#45;&gt;12954286016 -->
+<!-- 12958228176&#45;&gt;12958234992 -->
 <g id="edge5" class="edge">
-<title>12954286160&#45;&gt;12954286016</title>
+<title>12958228176&#45;&gt;12958234992</title>
 <path fill="none" stroke="black" d="M350.45,-245.58C329.55,-234.08 305.59,-220.9 284.86,-209.49"/>
 <polygon fill="black" stroke="black" points="286.75,-206.53 276.3,-204.78 283.37,-212.66 286.75,-206.53"/>
 </g>
-<!-- 12954285824 -->
+<!-- 12958230768 -->
 <g id="node8" class="node">
-<title>12954285824</title>
+<title>12958230768</title>
 <polygon fill="lightgrey" stroke="black" points="453,-361.75 353,-361.75 353,-341 453,-341 453,-361.75"/>
 <text text-anchor="middle" x="403" y="-348.25" font-family="monospace" font-size="10.00">AccumulateGrad</text>
 </g>
-<!-- 12954285824&#45;&gt;12954286160 -->
+<!-- 12958230768&#45;&gt;12958228176 -->
 <g id="edge6" class="edge">
-<title>12954285824&#45;&gt;12954286160</title>
+<title>12958230768&#45;&gt;12958228176</title>
 <path fill="none" stroke="black" d="M403,-340.72C403,-334.39 403,-325.66 403,-316.66"/>
 <polygon fill="black" stroke="black" points="406.5,-316.81 403,-306.81 399.5,-316.81 406.5,-316.81"/>
 </g>
-<!-- 5039212480 -->
+<!-- 12959068816 -->
 <g id="node9" class="node">
-<title>5039212480</title>
+<title>12959068816</title>
 <polygon fill="lightblue" stroke="black" points="430,-431.25 376,-431.25 376,-397.75 430,-397.75 430,-431.25"/>
 <text text-anchor="middle" x="403" y="-417.75" font-family="monospace" font-size="10.00">y</text>
 <text text-anchor="middle" x="403" y="-405" font-family="monospace" font-size="10.00"> ()</text>
 </g>
-<!-- 5039212480&#45;&gt;12954285824 -->
+<!-- 12959068816&#45;&gt;12958230768 -->
 <g id="edge7" class="edge">
-<title>5039212480&#45;&gt;12954285824</title>
+<title>12959068816&#45;&gt;12958230768</title>
 <path fill="none" stroke="black" d="M403,-397.44C403,-390.1 403,-381.32 403,-373.46"/>
 <polygon fill="black" stroke="black" points="406.5,-373.73 403,-363.73 399.5,-373.73 406.5,-373.73"/>
 </g>
-<!-- 12954286112 -->
+<!-- 12958229856 -->
 <g id="node10" class="node">
-<title>12954286112</title>
+<title>12958229856</title>
 <polygon fill="lightgrey" stroke="black" points="160,-210 0,-210 0,-151 160,-151 160,-210"/>
 <text text-anchor="middle" x="80" y="-196.5" font-family="monospace" font-size="10.00">PowBackward0</text>
 <text text-anchor="middle" x="80" y="-183.75" font-family="monospace" font-size="10.00">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</text>
 <text text-anchor="middle" x="80" y="-171" font-family="monospace" font-size="10.00">exponent: &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;2</text>
 <text text-anchor="middle" x="80" y="-158.25" font-family="monospace" font-size="10.00">self &#160;&#160;&#160;: [saved tensor]</text>
 </g>
-<!-- 12954286112&#45;&gt;12954286352 -->
+<!-- 12958229856&#45;&gt;12958225008 -->
 <g id="edge8" class="edge">
-<title>12954286112&#45;&gt;12954286352</title>
+<title>12958229856&#45;&gt;12958225008</title>
 <path fill="none" stroke="black" d="M103.64,-150.66C110.65,-142.11 118.35,-132.71 125.47,-124.02"/>
 <polygon fill="black" stroke="black" points="128.03,-126.42 131.67,-116.46 122.62,-121.98 128.03,-126.42"/>
 </g>
-<!-- 12954285728&#45;&gt;12954286112 -->
+<!-- 12958232208&#45;&gt;12958229856 -->
 <g id="edge9" class="edge">
-<title>12954285728&#45;&gt;12954286112</title>
+<title>12958232208&#45;&gt;12958229856</title>
 <path fill="none" stroke="black" d="M70.9,-251.99C72.07,-242.93 73.46,-232.19 74.79,-221.87"/>
 <polygon fill="black" stroke="black" points="78.26,-222.36 76.06,-212 71.31,-221.47 78.26,-222.36"/>
 </g>

@@ -79,7 +79,7 @@ Mike Wooldridge
 ::: {.column width="50%"}
 
 - AI4ABM @ ICML 2022, ICLR 2023
-- AAMAS 2023
+- AAMAS 2023, 2024
 - Differentiable almost everything @ ICML 2023
 - ICAIF 2023
 - JOSS 2023
