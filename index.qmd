@@ -72,7 +72,7 @@ Mike Wooldridge
 
 ::: 
 
-## Conferences
+## Papers / conferences
 
 :::: {.columns}
 
@@ -87,17 +87,9 @@ Mike Wooldridge
 
 ::: {.column width="50%"}
 
-::: {.r-stack}
 
-::: {.fragment .fade-out fragment-index=1}
 Differentiable ABM tutorial @ AAMAS 2024 (NZ)
 ![](./lac_images/diff_abms_tutorial.jpg)
-:::
-
-::: {.fragment .fade-in fragment-index=1}
-![](./lac_images/hobiton.jpg)
-:::
-:::
 
 :::
 
@@ -861,7 +853,7 @@ $$\nabla_\theta \; \ell (x(\theta(\phi)), y)$$
 
 ##
 
-![](arnau.ai/blackbirds/blob/main/docs/_static/banner.png?raw=true){width=600 fig-align=center}
+![](./lac_images/blackbirds.png){width=600 fig-align=center}
 
 - [www.github.com/arnauqb/blackbirds](www.github.com/arnauqb/blackbirds)
 
