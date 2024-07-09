@@ -105,6 +105,17 @@ Differentiable ABM tutorial @ AAMAS 2024 (NZ)
 ::::
 
 
+##
+
+### Slides
+
+[arnau.ai/lac_slides](arnau.ai/lac_slides)
+
+### References
+
+[arnau.ai/talks](arnau.ai/talks)
+
+
 
 ## The success of Machine Learning
 
