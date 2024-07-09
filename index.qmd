@@ -920,4 +920,5 @@ vi.run(true_data)
 
 <br><br><br>
 
-<center> Find the slides and references at [arnau.ai/lac](www.arnau.ai/lac)</center>
+<center> Find the slides and references at [arnau.ai/talks](www.arnau.ai/talk
+)</center>
