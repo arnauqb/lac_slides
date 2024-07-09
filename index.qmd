@@ -109,11 +109,11 @@ Differentiable ABM tutorial @ AAMAS 2024 (NZ)
 
 ### Slides
 
-[arnau.ai/lac_slides](arnau.ai/lac_slides)
+### [arnau.ai/lac_slides](arnau.ai/lac_slides)
 
 ### References
 
-[arnau.ai/talks](arnau.ai/talks)
+### [arnau.ai/talks](arnau.ai/talks)
 
 
 
@@ -880,7 +880,8 @@ def loss(theta, y):
 prior = dist.Normal(0, 1)
 posterior_estimator = make_flow()
 
-vi = VI(loss, posterior_estimator, prior)
+vi = VI(loss, posterior_estimator, prior,
+    gradient_estimation_method="pathwise", diff_mode="reverse")
 vi.run(true_data)
 ```
 
