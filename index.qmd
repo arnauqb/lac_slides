@@ -793,7 +793,7 @@ $$\nabla_\theta \; \ell (x(\theta(\phi)), y)$$
 
 ##
 
-![](https://github.com/arnauqb/blackbirds/blob/main/docs/_static/banner.png?raw=true){width=600 fig-align=center}
+![](arnau.ai/blackbirds/blob/main/docs/_static/banner.png?raw=true){width=600 fig-align=center}
 
 - [www.github.com/arnauqb/blackbirds](www.github.com/arnauqb/blackbirds)
 
@@ -821,10 +821,10 @@ vi.run(true_data)
 
 ![](./lac_images/losses.gif){height=400 .absolute top=-100 left=0}
 
-![](./lac_images/predictions.gif){height=400 .absolute top=350 left=0}
+![](./lac_images/pred_2.gif){height=400 .absolute top=350 left=0}
 
 
-![](./lac_images/posteriors.gif){width=900 .absolute top=0 right=-100}
+![](./lac_images/post_2.gif){width=900 .absolute top=0 right=-100}
 
 
 
@@ -844,7 +844,7 @@ vi.run(true_data)
 
 ::: {.column width="50%"}
 
-![](./lac_images/posteriors.gif){width=800 .absolute top=0 right=0}
+![](./lac_images/post_2.gif){width=800 .absolute top=0 right=0}
 
 :::
 
