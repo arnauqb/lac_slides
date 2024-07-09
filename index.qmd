@@ -89,7 +89,10 @@ Mike Wooldridge
 
 
 Differentiable ABM tutorial @ AAMAS 2024 (NZ)
+
+[arnau.ai/diff_abms_tutorial](www.arnau.ai/diff_abms_tutorial)
 ![](./lac_images/diff_abms_tutorial.jpg)
+
 
 :::
 
